@@ -54,3 +54,7 @@ fi;
         x += foo
 
     return x, {'content-type': 'text/plain'}
+
+
+if __name__ == "__main__":
+    app.run("0.0.0.0",5000)
