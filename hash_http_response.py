@@ -2,6 +2,7 @@ import requests
 import sys
 import hashlib
 
+
 VERBOSE = True
 VERBOSE = False
 
@@ -12,9 +13,9 @@ def hash_response(url, level=2):
     
     sha256(response.status_code + response.reason +  response.headers + response.body )
     """
-
+    my_headers = {"User-Agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.5735.199 Safari/537.36"}
     try:
-        response = requests.get(url, allow_redirects=False, timeout=4, verify=False)
+        response = requests.get(url, allow_redirects=False, headers=my_headers timeout=4, verify=False)
 
         body = response.text
         headers = ""
@@ -55,6 +56,9 @@ if __name__ == "__main__":
         level = int(sys.argv[2])
     else:
         level = 2
+    
+    
+    
     # check if url has schema in it (http/https)
     if "http" not in url:
         # just check http for now
@@ -67,4 +71,4 @@ if __name__ == "__main__":
     # level 2 is default
 
     hash = hash_response(url, level)
-    print(hash)
+    print(f"{url}:{hash}")
